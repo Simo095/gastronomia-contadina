@@ -13,7 +13,7 @@ const MenuPage = () => {
     <Container
       fluid
       className="d-flex align-items-center justify-content-center m-0 p-0">
-      {!notFound ? (
+      {notFound ? (
         <Container
           style={{
             height: "100vh"
