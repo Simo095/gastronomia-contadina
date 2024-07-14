@@ -28,6 +28,12 @@ const ModalCart = ({
   const [showCancel, setShowCancel] = useState(false);
   const handleCloseCancel = () => setShowCancel(false);
   const handleShowCancel = () => setShowCancel(true);
+  const shareImageOnWhatsApp = () => {
+    const imageUrl = "https://logowik.com/content/uploads/images/795_home.jpg";
+    const message = encodeURIComponent("Guarda questa immagine:");
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${message} ${imageUrl}`;
+    window.open(whatsappUrl, "_blank");
+  };
 
   useEffect(() => {
     dispatch(checkMenuBlob());
@@ -231,6 +237,17 @@ const ModalCart = ({
               color="#083759"
               fontSize={60}></IoIosCloseCircle>
             <p className="m-0 p-0 fst-italic">Cancella</p>
+          </div>
+
+          <div className="d-flex flex-column align-items-center gap-1 border-PayCart">
+            <IoIosCloseCircle
+              onClick={() => {
+                shareImageOnWhatsApp();
+              }}
+              cursor="pointer"
+              color="#083759"
+              fontSize={60}></IoIosCloseCircle>
+            <p className="m-0 p-0 fst-italic">What app</p>
           </div>
           <div className="d-flex gap-4">
             <div className="d-flex flex-column align-items-center gap-1 border-PayCart">
