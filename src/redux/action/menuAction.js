@@ -23,7 +23,7 @@ export const updateMenu = menuData => ({
 export const fetchMenuActionBlob = () => {
   return async dispatch => {
     try {
-      const ListBlobMenu = await fetch(`https://gastronomia-contadina.vercel.app/server/get`, {
+      const ListBlobMenu = await fetch(`https://gastronomia-contadina.vercel.app/api/get`, {
         method: "GET",
         headers: {
           "Cache-Control": "no-cache",
@@ -75,7 +75,7 @@ export const fetchMenuActionBlob = () => {
 export const checkMenuBlob = () => {
   return async dispatch => {
     try {
-      const ListBlobMenu = await fetch(`https://gastronomia-contadina.vercel.app/server/get`, {
+      const ListBlobMenu = await fetch(`https://gastronomia-contadina.vercel.app/api/get`, {
         method: "GET"
       });
       if (ListBlobMenu.ok) {
