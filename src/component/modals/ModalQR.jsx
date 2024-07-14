@@ -78,25 +78,9 @@ import QRCode from "react-qr-code";
 import scanqr from "../../asset/img/scanqr.png";
 import { useSelector } from "react-redux";
 import { IoIosCloseCircle } from "react-icons/io";
-import { useRef, useEffect, useState } from "react";
-import html2canvas from "html2canvas";
 
 const ModalQR = ({ showProp, repetedDishStateProp }) => {
   const qntCartApp = useSelector(state => state.cart.qnt);
-  const qrCodeRef = useRef();
-  const [qrCodeUrl, setQrCodeUrl] = useState("");
-
-  useEffect(() => {
-    const generateQrCodeUrl = async () => {
-      const canvas = await html2canvas(qrCodeRef.current);
-      const dataUrl = canvas.toDataURL("image/png");
-      setQrCodeUrl(dataUrl);
-    };
-
-    if (showProp) {
-      generateQrCodeUrl();
-    }
-  }, [showProp]);
 
   return (
     <Container
@@ -121,26 +105,12 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
         </Modal.Header>
         <Modal.Body>
           <Container className="d-flex justify-content-center">
-            <div
-              ref={qrCodeRef}
-              className="m-4">
-              {/*  */}
+            <div className="m-4">
+              <QRCode
+                style={{ userSelect: "auto" }}
+                value={repetedDishStateProp ? JSON.stringify(repetedDishStateProp) : "nulla da mostrare"}
+              />
             </div>
-            {qrCodeUrl ? (
-              <div className="m-4">
-                <a
-                  href={qrCodeUrl}
-                  download="ordinazione.png">
-                  <img
-                    src={qrCodeUrl}
-                    alt="QR Code"
-                    style={{ userSelect: "auto" }}
-                  />
-                </a>
-              </div>
-            ) : (
-              <QRCode value={repetedDishStateProp ? JSON.stringify(repetedDishStateProp) : "nulla da mostrare"} />
-            )}
           </Container>
         </Modal.Body>
         <Modal.Footer>
