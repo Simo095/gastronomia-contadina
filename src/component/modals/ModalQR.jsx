@@ -90,11 +90,12 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
     canvas.toBlob(blob => {
       if (blob) {
         const message = encodeURIComponent("Guarda questa immagine:");
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=+393337179769&text=${message}`;
         const formData = new FormData();
         formData.append("image", blob, "qrcode.png");
         const fileURL = URL.createObjectURL(blob);
-        window.open(`${whatsappUrl}&url=${fileURL}`, "_blank");
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=+393337179769&text=${message} &url=${fileURL}`;
+
+        window.open(whatsappUrl, "_blank");
       }
     }, "image/png");
   };
