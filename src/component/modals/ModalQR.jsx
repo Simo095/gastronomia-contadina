@@ -123,21 +123,27 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
           <Container className="d-flex justify-content-center">
             <div
               ref={qrCodeRef}
-              className="m-4 qr-download">
-              <QRCode value={repetedDishStateProp ? JSON.stringify(repetedDishStateProp) : "nulla da mostrare"} />
+              className="m-4">
+              {/*  */}
             </div>
-            {qrCodeUrl && (
+            {qrCodeUrl ? (
               <div className="m-4">
                 <a
                   href={qrCodeUrl}
-                  download="qrcode.png">
-                  <img
+                  download="ordinazione.png">
+                  <QRCode
+                    style={{ userSelect: "auto" }}
+                    value={repetedDishStateProp ? JSON.stringify(repetedDishStateProp) : "nulla da mostrare"}
+                  />
+                  {/* <img
                     src={qrCodeUrl}
                     alt="QR Code"
                     style={{ userSelect: "auto" }}
-                  />
+                  /> */}
                 </a>
               </div>
+            ) : (
+              <QRCode value={repetedDishStateProp ? JSON.stringify(repetedDishStateProp) : "nulla da mostrare"} />
             )}
           </Container>
         </Modal.Body>
