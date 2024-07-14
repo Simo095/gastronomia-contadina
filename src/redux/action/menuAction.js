@@ -37,17 +37,18 @@ export const fetchMenuActionBlob = () => {
         dispatch(notFound(false));
         const menuJson = await ListBlobMenu.json();
 
-        // const menuFiltered = menuJson
-        //   .filter(file => file.pathname.startsWith(`gs`))
-        //   .reduce((latest, current) => {
-        //     return new Date(current.uploadedAt) > new Date(latest.uploadedAt) ? current : latest;
-        //   }, menuJson[0]);
+        const menuFiltered = menuJson
+          .filter(file => file.pathname.startsWith(`menu`))
+          .reduce((latest, current) => {
+            return new Date(current.uploadedAt) > new Date(latest.uploadedAt) ? current : latest;
+          }, menuJson[0]);
+        if (!menuFiltered) throw new Error("file non trovato!" + menuFiltered);
 
-        const lastMenuInsert = menuJson.reduce((latest, current) => {
-          return new Date(current.uploadedAt) > new Date(latest.uploadedAt) ? current : latest;
-        }, menuJson[0]);
+        // const lastMenuInsert = menuJson.reduce((latest, current) => {
+        //   return new Date(current.uploadedAt) > new Date(latest.uploadedAt) ? current : latest;
+        // }, menuJson[0]);
 
-        const response = await fetch(lastMenuInsert.url);
+        const response = await fetch(menuFiltered.url);
         const objMenuResponse = await response.json();
         const sortedDishes = [...objMenuResponse].sort((a, b) => a.ward.id - b.ward.id);
         dispatch(addMenuOnStore(sortedDishes));
