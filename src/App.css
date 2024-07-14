@@ -228,3 +228,10 @@ body {
     transform: translateY(10px);
   }
 }
+
+.qr-download {
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
+}

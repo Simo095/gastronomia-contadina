@@ -107,6 +107,7 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
           <Container className="d-flex justify-content-center">
             <div className="m-4">
               <QRCode
+                className="qr-download"
                 style={{ userSelect: "auto" }}
                 value={repetedDishStateProp ? JSON.stringify(repetedDishStateProp) : "nulla da mostrare"}
               />
