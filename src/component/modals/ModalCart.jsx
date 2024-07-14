@@ -4,9 +4,9 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { IoChevronBackCircle, IoBagCheck } from "react-icons/io5";
 
 import { useEffect, useState } from "react";
-//import { checkMenuBlob } from "../../redux/action/menuAction";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalCancel from "./ModalCancel";
+import { checkMenuBlob } from "../../redux/action/menuAction";
 
 const ModalCart = ({
   showProp,
@@ -19,9 +19,9 @@ const ModalCart = ({
   notRightQuantityProp,
   errorDishInStockProp
 }) => {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const noteAppProp = useSelector(state => state.cart.note);
-  //const notRightQuantity = useSelector(state => state.errorCart.listDishNotInStock);
+  const notRightQuantity = useSelector(state => state.errorCart.listDishNotInStock);
   const menuProp = useSelector(state => state.menu.menu);
   const cartTotalProp = useSelector(state => state.cart.total);
 
@@ -30,26 +30,26 @@ const ModalCart = ({
   const handleShowCancel = () => setShowCancel(true);
 
   useEffect(() => {
-    // dispatch(checkMenuBlob());
-    // return () => {
-    //   if (notRightQuantity.length > 0) {
-    //     notRightQuantity.map((id) =>
-    //       repetedDishStateProp.map((dish) =>
-    //         dish === "FS_QR"
-    //           ? null
-    //           : dish === "tavolo"
-    //           ? null
-    //           : dish === "richiestastock"
-    //           ? null
-    //           : dish === "note"
-    //           ? null
-    //           : parseInt(dish) === parseInt(id)
-    //           ? delete repetedDishStateProp[id]
-    //           : null
-    //       )
-    //     );
-    //   }
-    // };
+    dispatch(checkMenuBlob());
+    return () => {
+      if (notRightQuantity.length > 0) {
+        notRightQuantity.map(id =>
+          repetedDishStateProp.map(dish =>
+            dish === "FS_QR"
+              ? null
+              : dish === "tavolo"
+              ? null
+              : dish === "richiestastock"
+              ? null
+              : dish === "note"
+              ? null
+              : parseInt(dish) === parseInt(id)
+              ? delete repetedDishStateProp[id]
+              : null
+          )
+        );
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
