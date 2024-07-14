@@ -31,6 +31,7 @@ export const fetchMenuActionBlob = () => {
           Expires: "0"
         }
       });
+      console.log("ListBlobMenu=>", ListBlobMenu);
 
       if (ListBlobMenu.ok) {
         dispatch(notFound(false));
