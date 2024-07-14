@@ -28,10 +28,16 @@ const ModalCart = ({
   const [showCancel, setShowCancel] = useState(false);
   const handleCloseCancel = () => setShowCancel(false);
   const handleShowCancel = () => setShowCancel(true);
+  const imageUrl = "https://logowik.com/content/uploads/images/795_home.jpg";
+  const createBlobFromImageUrl = async imageUrl => {
+    const response = await fetch(imageUrl);
+    const blob = await response.blob();
+    return blob;
+  };
   const shareImageOnWhatsApp = () => {
-    const imageUrl = "https://logowik.com/content/uploads/images/795_home.jpg";
+    const imageBlob = createBlobFromImageUrl(imageUrl);
     const message = encodeURIComponent("Guarda questa immagine:");
-    const whatsappUrl = `https://api.whatsapp.com/send?text=${message} ${imageUrl}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${message} ${imageBlob}`;
     window.open(whatsappUrl, "_blank");
   };
 
