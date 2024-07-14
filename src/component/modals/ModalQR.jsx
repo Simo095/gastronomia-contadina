@@ -93,7 +93,7 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
         const formData = new FormData();
         formData.append("image", blob, "qrcode.png");
         const fileURL = URL.createObjectURL(blob);
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=+393337179769&text=${message} &url=${fileURL}`;
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=+393337179769&text=${message} ${fileURL}`;
 
         window.open(whatsappUrl, "_blank");
       }
