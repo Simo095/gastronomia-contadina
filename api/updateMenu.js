@@ -32,16 +32,17 @@ const parseCSV = async csv => {
     stream
       .pipe(
         csvParser({
-          headers: ["id", "name", "wardId", "wardName", "price"],
+          headers: ["id", "type", "wardId", "wardName", "price"],
           separator: ";"
         })
       )
       .on("data", data => {
-        if (data.name && data.wardId && data.wardName && data.price) {
+        if (data.type && data.wardId && data.wardName && data.price) {
           const formattedPrice = data.price.replace(",", ".");
           results.push({
             id: data.id,
-            name: data.name,
+            type: data.wardName,
+            name: data.type,
             ward: {
               id: data.wardId,
               name: data.wardName
