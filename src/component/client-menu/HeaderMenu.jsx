@@ -4,15 +4,13 @@ import { FaArrowCircleUp } from "react-icons/fa";
 import { Button, Col, Container, Navbar, Row } from "react-bootstrap";
 import ModalCart from "../modals/ModalCart";
 import ModalQR from "../modals/ModalQR";
-import { fetchImage } from "../../redux/action/actions";
+import logo from "../../asset/img/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { modifyObjToDB, checkObjToDBAndMenu } from "../../redux/action/cartAction";
 
 const HeaderMenu = () => {
   const [showModalCart, setShowModalCart] = useState(false);
   const [showModalQr, setShowModalQr] = useState(false);
-
-  const [logo, setLogo] = useState("");
 
   const handleCloseModalCart = () => setShowModalCart(false);
   const handleShowModalCart = () => setShowModalCart(true);
@@ -31,9 +29,6 @@ const HeaderMenu = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (logo === "") {
-      fetchImage(setLogo);
-    }
     dispatch(modifyObjToDB(orderFood, note));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orderFood]);
@@ -49,7 +44,7 @@ const HeaderMenu = () => {
           <Col
             xs={9}
             style={{
-              backgroundImage: `url(${logo ? logo : null})`,
+              backgroundImage: `url(${logo})`,
               backgroundPosition: "center",
               backgroundSize: "240px",
               backgroundRepeat: "no-repeat"
