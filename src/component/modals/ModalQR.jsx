@@ -28,8 +28,8 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
           </Container>
         </Modal.Header>
         <Modal.Body>
-          <Container className="d-flex justify-content-center">
-            <div className="m-4">
+          <Container className="d-flex justify-content-center qr-download">
+            <div className="m-4 qr-download">
               <QRCode
                 className="qr-download"
                 style={{ userSelect: "auto" }}
