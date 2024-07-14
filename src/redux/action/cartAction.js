@@ -11,31 +11,31 @@ export const ADD_NOTE = "ADD_NOTE";
 export const OBJ_WEB_TO_DB = "OBJ_WEB_TO_DB";
 export const ADD_COVERED = "ADD_COVERED";
 
-export const addDishOnStore = (dish) => ({ type: ADD_DISH, payload: dish });
-export const addQntCartOnStore = (one) => ({ type: ADD_QNT_CART, payload: 1 });
-export const minusQntCartOnStore = (one) => ({ type: MINUS_QNT, payload: 1 });
-export const plusTotalCart = (price) => ({ type: PLUS_TOTAL, payload: price });
-export const minusTotalCart = (price) => ({
+export const addDishOnStore = dish => ({ type: ADD_DISH, payload: dish });
+export const addQntCartOnStore = one => ({ type: ADD_QNT_CART, payload: 1 });
+export const minusQntCartOnStore = one => ({ type: MINUS_QNT, payload: 1 });
+export const plusTotalCart = price => ({ type: PLUS_TOTAL, payload: price });
+export const minusTotalCart = price => ({
   type: MINUS_TOTAL,
-  payload: price,
+  payload: price
 });
-export const notifyCondition = (condition) => ({
+export const notifyCondition = condition => ({
   type: NOTIFY,
-  payload: condition,
+  payload: condition
 });
-export const orderedFoodOnStore = (arrayFood) => ({
+export const orderedFoodOnStore = arrayFood => ({
   type: SET_ORDERED_FOOD,
-  payload: arrayFood,
+  payload: arrayFood
 });
-export const addNoteOnStore = (note) => ({ type: ADD_NOTE, payload: note });
-export const objToDBOnStore = (obj) => ({ type: OBJ_WEB_TO_DB, payload: obj });
-export const costCoveredOnStore = (cost) => ({
+export const addNoteOnStore = note => ({ type: ADD_NOTE, payload: note });
+export const objToDBOnStore = obj => ({ type: OBJ_WEB_TO_DB, payload: obj });
+export const costCoveredOnStore = cost => ({
   type: ADD_COVERED,
-  payload: cost,
+  payload: cost
 });
 
 export const modifyObjToDB = (orderFoodApp, note) => {
-  return async (dispatch) => {
+  return async dispatch => {
     try {
       const repetedDish = {};
       if (repetedDish.hasOwnProperty("richiestastock")) {
@@ -70,33 +70,22 @@ export const modifyObjToDB = (orderFoodApp, note) => {
   };
 };
 
-export const checkObjToDBAndMenu = (
-  objToDB,
-  notRightQuantity,
-  handleShowModalCart
-) => {
-  return async (dispatch) => {
+export const checkObjToDBAndMenu = (objToDB, notRightQuantity, handleShowModalCart) => {
+  return async dispatch => {
     try {
-      const ListBlobMenu = await fetch(
-        `https://festival-menu.vercel.app/api/get`,
-        {
-          method: "GET",
-        }
-      );
+      const ListBlobMenu = await fetch(`https://gastronomia-contadina.vercel.app/api/get`, {
+        method: "GET"
+      });
 
       if (ListBlobMenu.ok) {
         const menuJson = await ListBlobMenu.json();
         const lastMenuInsert = menuJson.reduce((latest, current) => {
-          return new Date(current.uploadedAt) > new Date(latest.uploadedAt)
-            ? current
-            : latest;
+          return new Date(current.uploadedAt) > new Date(latest.uploadedAt) ? current : latest;
         }, menuJson[0]);
         const response = await fetch(lastMenuInsert.url);
         const objMenuResponse = await response.json();
-        const sortedDishes = [...objMenuResponse].sort(
-          (a, b) => a.ward.id - b.ward.id
-        );
-        sortedDishes.map((dish) => {
+        const sortedDishes = [...objMenuResponse].sort((a, b) => a.ward.id - b.ward.id);
+        sortedDishes.map(dish => {
           if (objToDB.hasOwnProperty(dish.id)) {
             if (objToDB[dish.id] > dish.stock) {
               dispatch(modifyConditionErrorDishStock(true));
