@@ -1,8 +1,6 @@
 import { Container, Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-scroll";
-import { useEffect, useState } from "react";
-import { fetchName } from "../../redux/action/actions";
 import antipasto from "../../asset/img/antipasto.png";
 import primo from "../../asset/img/pasta.png";
 import bevanda from "../../asset/img/beverage.png";
@@ -19,18 +17,13 @@ import gelato from "../../asset/img/gelato.png";
 import bar from "../../asset/img/bar.png";
 
 const GroupButton = () => {
-  const [name, setName] = useState("");
-  useEffect(() => {
-    fetchName(setName);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   const reparti = useSelector(state => state.menu.ward);
 
   return (
     <Container
       fluid
       className="d-flex flex-column gap-2 m-0 p-0">
-      <h1>{name}</h1>
+      <h1>Gastronomia Contadina</h1>
       {reparti &&
         reparti.length > 0 &&
         reparti.map(dish => (
