@@ -73,24 +73,28 @@
 //   );
 // };
 // export default ModalQR;
-
 import { Container, Image, Modal } from "react-bootstrap";
 import QRCode from "react-qr-code";
 import scanqr from "../../asset/img/scanqr.png";
 import { useSelector } from "react-redux";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useRef } from "react";
+import html2canvas from "html2canvas";
 
 const ModalQR = ({ showProp, repetedDishStateProp }) => {
   const qntCartApp = useSelector(state => state.cart.qnt);
-  const canvasRef = useRef();
-  const createBlobFromCanvas = () => {
-    const canvas = canvasRef.current;
+  const qrCodeRef = useRef();
+
+  const createBlobFromCanvas = async () => {
+    const canvas = await html2canvas(qrCodeRef.current);
     canvas.toBlob(blob => {
       if (blob) {
         const message = encodeURIComponent("Guarda questa immagine:");
-        const whatsappUrl = `https://api.whatsapp.com/send?phone=+393337179769&ttext=${message} ${blob}`;
-        window.open(whatsappUrl, "_blank");
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=+393337179769&text=${message}`;
+        const formData = new FormData();
+        formData.append("image", blob, "qrcode.png");
+        const fileURL = URL.createObjectURL(blob);
+        window.open(`${whatsappUrl}&url=${fileURL}`, "_blank");
       }
     }, "image/png");
   };
@@ -118,12 +122,11 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
         </Modal.Header>
         <Modal.Body>
           <Container className="d-flex justify-content-center">
-            <QRCode
-              className="m-4"
-              value={repetedDishStateProp ? JSON.stringify(repetedDishStateProp) : "nulla da mostrare"}
-              ref={canvasRef}
-              renderAs="canvas"
-            />
+            <div
+              ref={qrCodeRef}
+              className="m-4">
+              <QRCode value={repetedDishStateProp ? JSON.stringify(repetedDishStateProp) : "nulla da mostrare"} />
+            </div>
           </Container>
         </Modal.Body>
         <Modal.Footer>
@@ -134,12 +137,11 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
             </p>
             <div className="d-flex flex-column align-items-center gap-1 border-PayCart">
               <IoIosCloseCircle
-                onClick={() => {
-                  createBlobFromCanvas();
-                }}
+                onClick={createBlobFromCanvas}
                 cursor="pointer"
                 color="#083759"
-                fontSize={60}></IoIosCloseCircle>
+                fontSize={60}
+              />
               <p className="m-0 p-0 fst-italic">What app</p>
             </div>
           </Container>
@@ -148,4 +150,5 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
     </Container>
   );
 };
+
 export default ModalQR;
