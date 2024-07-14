@@ -131,15 +131,11 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
                 <a
                   href={qrCodeUrl}
                   download="ordinazione.png">
-                  <QRCode
-                    style={{ userSelect: "auto" }}
-                    value={repetedDishStateProp ? JSON.stringify(repetedDishStateProp) : "nulla da mostrare"}
-                  />
-                  {/* <img
+                  <img
                     src={qrCodeUrl}
                     alt="QR Code"
                     style={{ userSelect: "auto" }}
-                  /> */}
+                  />
                 </a>
               </div>
             ) : (
