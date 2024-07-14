@@ -34,8 +34,8 @@ const ModalCart = ({
     const blob = await response.blob();
     return blob;
   };
-  const shareImageOnWhatsApp = () => {
-    const imageBlob = createBlobFromImageUrl(imageUrl);
+  const shareImageOnWhatsApp = async () => {
+    const imageBlob = await createBlobFromImageUrl(imageUrl);
     const message = encodeURIComponent("Guarda questa immagine:");
     const whatsappUrl = `https://api.whatsapp.com/send?text=${message} ${imageBlob}`;
     window.open(whatsappUrl, "_blank");
