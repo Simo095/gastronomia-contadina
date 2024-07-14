@@ -1,5 +1,5 @@
 export const fetchImage = async setLogo => {
-  const requestLogo = await fetch(`public/logo.png`, {
+  const requestLogo = await fetch(`/public/logo.png`, {
     method: "GET"
   });
   if (requestLogo.ok) {
@@ -9,7 +9,7 @@ export const fetchImage = async setLogo => {
   }
 };
 export const fetchName = async setName => {
-  const requestname = await fetch(`public/name.txt`, {
+  const requestname = await fetch(`/public/name.txt`, {
     method: "GET"
   });
   if (requestname.ok) {
