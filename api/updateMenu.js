@@ -37,6 +37,7 @@ const parseCSV = async csv => {
         })
       )
       .on("data", data => {
+        console.log("data=>", data);
         if (data.type && data.wardId && data.wardName && data.price) {
           const formattedPrice = data.price.replace(",", ".");
           results.push({
