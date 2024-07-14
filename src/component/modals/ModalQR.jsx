@@ -87,10 +87,7 @@ const ModalQR = ({ showProp, repetedDishStateProp }) => {
 
   const createBlobFromCanvas = async () => {
     const canvas = await html2canvas(qrCodeRef.current);
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=+393337179769&text=Questo è il mio ordine! ${canvas.toBlob(
-      blob => blob,
-      "image/png"
-    )}`;
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=+393337179769&text=Questo è il mio ordine! ${qrCodeRef}`;
 
     window.open(whatsappUrl, "_blank");
   };
