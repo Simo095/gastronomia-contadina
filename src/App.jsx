@@ -6,6 +6,7 @@ import MenuPage from "./component/client-menu/MenuPage";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
+import HomePage from "./component/HomePage";
 
 const App = () => {
   const dispatch = useDispatch();
