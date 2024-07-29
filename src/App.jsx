@@ -18,12 +18,12 @@ const App = () => {
     <Container
       style={{ minWidth: "320px", maxWidth: "1000px" }}
       fluid
-      className="App m-0 p-0">
+      className="App m-0 p-0"
+    >
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={<MenuPage />}></Route>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/menu" element={<MenuPage />}></Route>
         </Routes>
       </BrowserRouter>
     </Container>
