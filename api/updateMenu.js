@@ -31,7 +31,7 @@ const parseCSV = async (csv) => {
   const results = [];
   return new Promise((resolve, reject) => {
     const stream = Readable.from([csv]);
-    console.log("CSV =>", csv);
+    console.log("CSV =>", stream);
     stream
       .pipe(
         csvParser({
