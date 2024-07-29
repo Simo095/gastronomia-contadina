@@ -108,7 +108,7 @@ import { useSelector } from "react-redux";
 import DishUpFour from "../dish-condition/DishUpFour";
 import DishMinusFour from "../dish-condition/DishMinusFour";
 import DishWornOut from "../dish-condition/DishWornOut";
-import HellaHopModal from "./HellaHopModal";
+import HellaHopModal from "../modals/HellaHopModal";
 
 const Dishes = () => {
   const menu = useSelector((state) => state.menu.menu);
