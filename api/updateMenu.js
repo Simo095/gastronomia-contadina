@@ -31,22 +31,26 @@ const parseCSV = async (csv) => {
   const results = [];
   return new Promise((resolve, reject) => {
     const stream = Readable.from([csv]);
-    console.log("CSV =>", stream);
     stream
       .pipe(
         csvParser({
-          headers: ["id", "type", "wardId", "wardName", "price"],
+          headers: ["id", "name", "wardId", "wardName", "price"],
           separator: ";",
         })
       )
       .on("data", (data) => {
         console.log("data=>", data);
-        if (data.type && data.wardId && data.wardName && data._5) {
+        if (
+          data.id &&
+          data.name &&
+          data.wardId &&
+          data.wardName &&
+          data.price
+        ) {
           const formattedPrice = data.price.replace(",", ".");
           results.push({
             id: data.id,
-            type: data.wardName,
-            name: data.type,
+            name: data.name,
             ward: {
               id: data.wardId,
               name: data.wardName,
