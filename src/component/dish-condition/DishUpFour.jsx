@@ -64,19 +64,19 @@ const DishUpFour = ({ dish }) => {
       >
         <Col className="m-0 p-0 d-flex flex-grow-1" xs={4}>
           <span className="fs-5 fw-bold flex-grow-1 m-0 p-0 ps-3">
-            {dish.name}
+            {dish.name}{" "}
+            {dish.name.includes("HELLA") ? (
+              <BsInfoCircle onClick={handleShowHella} />
+            ) : dish.name.includes("WAHIDA") ? (
+              <BsInfoCircle onClick={handleShowWahida} />
+            ) : dish.name.includes("NAIF") ? (
+              <BsInfoCircle onClick={handleShowNaif} />
+            ) : dish.name.includes("SPECIAL") ? (
+              <BsInfoCircle onClick={handleShowSpecial} />
+            ) : dish.name.includes("AMBER") ? (
+              <BsInfoCircle onClick={handleShowAmber} />
+            ) : null}
           </span>
-          {dish.name.includes("PASTA") ? (
-            <BsInfoCircle onClick={handleShowHella} />
-          ) : dish.name.includes("GRAMIGNA") ? (
-            <BsInfoCircle onClick={handleShowWahida} />
-          ) : dish.name.includes("TORTELLONI") ? (
-            <BsInfoCircle onClick={handleShowNaif} />
-          ) : dish.name.includes("PENNE") ? (
-            <BsInfoCircle onClick={handleShowSpecial} />
-          ) : dish.name.includes("FARRO") ? (
-            <BsInfoCircle onClick={handleShowAmber} />
-          ) : null}
         </Col>
         <Col className="m-0 p-0 d-flex flex-grow-0" xs={2}>
           <span className="fs-4 fw-bold m-0">
