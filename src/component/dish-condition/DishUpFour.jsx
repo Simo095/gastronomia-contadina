@@ -37,12 +37,24 @@ import WahidaModal from "../modals/WahidaModal";
 import SpecialModal from "../modals/SpecialModal";
 import NaifModal from "../modals/NaifModal";
 import AmberAleModal from "../modals/AmberAleModal";
+import { BsInfoCircle } from "react-icons/bs";
 
 const DishUpFour = ({ dish }) => {
-  const [showModal, setShowModal] = useState(false); // Stato per gestire il modale
-
-  const handleShow = () => setShowModal(true);
-  const handleClose = () => setShowModal(false);
+  const [showHella, setShowHella] = useState(false);
+  const [showNaif, setShowNaif] = useState(false);
+  const [showAmber, setShowAmber] = useState(false);
+  const [showWahida, setShowWahida] = useState(false);
+  const [showSpecial, setShowSpecial] = useState(false);
+  const handleShowHella = () => setShowModal(true);
+  const handleCloseHella = () => setShowModal(false);
+  const handleShowNaif = () => setShowModal(true);
+  const handleCloseNaif = () => setShowModal(false);
+  const handleShowAmber = () => setShowModal(true);
+  const handleCloseAmber = () => setShowModal(false);
+  const handleShowWahida = () => setShowModal(true);
+  const handleCloseWahida = () => setShowModal(false);
+  const handleShowSpecial = () => setShowModal(true);
+  const handleCloseSpecial = () => setShowModal(false);
 
   return (
     <Container fluid className="m-0 p-0" key={dish.id}>
@@ -54,6 +66,17 @@ const DishUpFour = ({ dish }) => {
           <span className="fs-5 fw-bold flex-grow-1 m-0 p-0 ps-3">
             {dish.name}
           </span>
+          {dish.name.includes("pasta") ? (
+            <BsInfoCircle size={35} onClick={handleShow} />
+          ) : dish.name.includes("gramigna") ? (
+            <BsInfoCircle size={35} onClick={handleShow} />
+          ) : dish.name.includes("tortelloni") ? (
+            <BsInfoCircle size={35} onClick={handleShow} />
+          ) : dish.name.includes("penne") ? (
+            <BsInfoCircle size={35} onClick={handleShow} />
+          ) : dish.name.includes("farro") ? (
+            <BsInfoCircle size={35} onClick={handleShow} />
+          ) : null}
         </Col>
         <Col className="m-0 p-0 d-flex flex-grow-0" xs={2}>
           <span className="fs-4 fw-bold m-0">
@@ -65,24 +88,17 @@ const DishUpFour = ({ dish }) => {
         <Col className="m-0 p-0 d-flex flex-grow-0" xs={5}>
           <Numero specificDish={dish} />
         </Col>
-        <Col xs={1}>
-          {dish.name === "FARRO FANTASIA" ? (
-            <Button variant="info" onClick={handleShow}>
-              Info
-            </Button>
-          ) : null}
-        </Col>
       </Row>
       {dish.name.includes("pasta") ? (
-        <HellaHopModal show={showModal} handleClose={handleClose} />
+        <HellaHopModal show={showHella} handleClose={handleCloseHella} />
       ) : dish.name.includes("gramigna") ? (
-        <AmberAleModal show={showModal} handleClose={handleClose} />
+        <AmberAleModal show={showAmber} handleClose={handleCloseAmber} />
       ) : dish.name.includes("tortelloni") ? (
-        <SpecialModal show={showModal} handleClose={handleClose} />
+        <SpecialModal show={showSpecial} handleClose={handleCloseSpecial} />
       ) : dish.name.includes("penne") ? (
-        <NaifModal show={showModal} handleClose={handleClose} />
+        <NaifModal show={showNaif} handleClose={handleCloseNaif} />
       ) : dish.name.includes("farro") ? (
-        <WahidaModal show={showModal} handleClose={handleClose} />
+        <WahidaModal show={showWahida} handleClose={handleCloseWahida} />
       ) : null}
     </Container>
   );
