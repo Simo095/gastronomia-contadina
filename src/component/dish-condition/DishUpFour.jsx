@@ -89,17 +89,12 @@ const DishUpFour = ({ dish }) => {
           <Numero specificDish={dish} />
         </Col>
       </Row>
-      {dish.name.includes("pasta") ? (
-        <HellaHopModal show={showHella} handleClose={handleCloseHella} />
-      ) : dish.name.includes("gramigna") ? (
-        <AmberAleModal show={showAmber} handleClose={handleCloseAmber} />
-      ) : dish.name.includes("tortelloni") ? (
-        <SpecialModal show={showSpecial} handleClose={handleCloseSpecial} />
-      ) : dish.name.includes("penne") ? (
-        <NaifModal show={showNaif} handleClose={handleCloseNaif} />
-      ) : dish.name.includes("farro") ? (
-        <WahidaModal show={showWahida} handleClose={handleCloseWahida} />
-      ) : null}
+
+      <HellaHopModal show={showHella} handleClose={handleCloseHella} />
+      <AmberAleModal show={showAmber} handleClose={handleCloseAmber} />
+      <SpecialModal show={showSpecial} handleClose={handleCloseSpecial} />
+      <NaifModal show={showNaif} handleClose={handleCloseNaif} />
+      <WahidaModal show={showWahida} handleClose={handleCloseWahida} />
     </Container>
   );
 };
