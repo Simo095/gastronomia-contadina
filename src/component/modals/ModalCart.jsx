@@ -145,12 +145,12 @@ const ModalCart = ({
                   </p>
                 </Col>
               </Row>
-              <Row>
+              {/* <Row>
                 <Col xs={7}>
                   <span>Note</span>
                 </Col>
               </Row>
-              {noteAppProp}
+              {noteAppProp} */}
             </Container>
           </Modal.Body>
         ) : (
@@ -220,12 +220,12 @@ const ModalCart = ({
                   </p>
                 </Col>
               </Row>
-              <Row className="" style={{ borderTop: "1px solid #aaa" }}>
+              {/* <Row className="" style={{ borderTop: "1px solid #aaa" }}>
                 <Col xs={7}>
                   <span>Note</span>
                 </Col>
               </Row>
-              <p className="fst-italic">{noteAppProp}</p>
+              <p className="fst-italic">{noteAppProp}</p> */}
             </Container>
           </Modal.Body>
         )}
@@ -254,8 +254,7 @@ const ModalCart = ({
                 cursor="pointer"
                 color="#083759"
                 fontSize={60}
-              ></IoBagCheck>
-
+              />
               <p className="fst-italic">Ordina</p>
             </div>
           </div>

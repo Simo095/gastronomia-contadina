@@ -6,7 +6,10 @@ import ModalCart from "../modals/ModalCart";
 import ModalQR from "../modals/ModalQR";
 import logo from "../../asset/img/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { modifyObjToDB, checkObjToDBAndMenu } from "../../redux/action/cartAction";
+import {
+  modifyObjToDB,
+  checkObjToDBAndMenu,
+} from "../../redux/action/cartAction";
 
 const HeaderMenu = () => {
   const [showModalCart, setShowModalCart] = useState(false);
@@ -15,16 +18,21 @@ const HeaderMenu = () => {
   const handleCloseModalCart = () => setShowModalCart(false);
   const handleShowModalCart = () => setShowModalCart(true);
   const handleShowModalQr = () => setShowModalQr(true);
+  const handleCloseModalQr = () => setShowModalQr(false);
   const deleteOrderedFood = () => window.location.reload();
 
-  const notify = useSelector(state => state.cart.notify);
-  const note = useSelector(state => state.cart.note);
-  const coveredCost = useSelector(state => state.cart.covered);
-  const qntCartApp = useSelector(state => state.cart.qnt);
-  const orderFood = useSelector(state => state.cart.orderedFood);
-  const objToDB = useSelector(state => state.cart.objIdDishQnt);
-  const notRightQuantity = useSelector(state => state.errorCart.listDishNotInStock);
-  const errorDishInStock = useSelector(state => state.errorCart.errorDishNotRightStock);
+  const notify = useSelector((state) => state.cart.notify);
+  const note = useSelector((state) => state.cart.note);
+  const coveredCost = useSelector((state) => state.cart.covered);
+  const qntCartApp = useSelector((state) => state.cart.qnt);
+  const orderFood = useSelector((state) => state.cart.orderedFood);
+  const objToDB = useSelector((state) => state.cart.objIdDishQnt);
+  const notRightQuantity = useSelector(
+    (state) => state.errorCart.listDishNotInStock
+  );
+  const errorDishInStock = useSelector(
+    (state) => state.errorCart.errorDishNotRightStock
+  );
 
   const dispatch = useDispatch();
 
@@ -34,12 +42,11 @@ const HeaderMenu = () => {
   }, [orderFood]);
 
   return (
-    <Container
-      fluid
-      className="m-0 p-0">
+    <Container fluid className="m-0 p-0">
       <Navbar
         className="bg-body-tertiary fixed-top d-flex flex-grow-1"
-        style={{ borderBottom: "5px solid" }}>
+        style={{ borderBottom: "5px solid" }}
+      >
         <Row className="d-flex flex-grow-1">
           <Col
             xs={9}
@@ -47,17 +54,25 @@ const HeaderMenu = () => {
               backgroundImage: `url(${logo})`,
               backgroundPosition: "center",
               backgroundSize: "240px",
-              backgroundRepeat: "no-repeat"
-            }}></Col>
+              backgroundRepeat: "no-repeat",
+            }}
+          ></Col>
           <Col xs={2}>
             <Container
               fluid
-              className="d-flex flex-column gap-2 align-items-end m-0 p-o">
+              className="d-flex flex-column gap-2 align-items-end m-0 p-o"
+            >
               {notify ? (
                 <Button
                   className="d-flex justify-content-center align-items-center position-relative shadow-icons "
                   onClick={async () => {
-                    dispatch(checkObjToDBAndMenu(objToDB, notRightQuantity, handleShowModalCart));
+                    dispatch(
+                      checkObjToDBAndMenu(
+                        objToDB,
+                        notRightQuantity,
+                        handleShowModalCart
+                      )
+                    );
                   }}
                   style={{
                     backgroundColor: "#00000000",
@@ -66,8 +81,9 @@ const HeaderMenu = () => {
                     height: "50px",
                     width: "50px",
                     cursor: "pointer",
-                    boxShadow: "5px 5px 15px 5px #083759"
-                  }}>
+                    boxShadow: "5px 5px 15px 5px #083759",
+                  }}
+                >
                   <span
                     style={{
                       width: "20px",
@@ -76,14 +92,12 @@ const HeaderMenu = () => {
                       borderRadius: "50%",
                       position: "absolute",
                       right: "-6px",
-                      top: "-6px"
-                    }}>
+                      top: "-6px",
+                    }}
+                  >
                     {qntCartApp}
                   </span>
-                  <FaShoppingCart
-                    fontSize={30}
-                    color="black"
-                  />
+                  <FaShoppingCart fontSize={30} color="black" />
                 </Button>
               ) : (
                 <Button
@@ -97,12 +111,10 @@ const HeaderMenu = () => {
                     borderRadius: "50%",
                     height: "50px",
                     width: "50px",
-                    cursor: "pointer"
-                  }}>
-                  <FaShoppingCart
-                    fontSize={30}
-                    color="black"
-                  />
+                    cursor: "pointer",
+                  }}
+                >
+                  <FaShoppingCart fontSize={30} color="black" />
                 </Button>
               )}
               <Button
@@ -114,12 +126,10 @@ const HeaderMenu = () => {
                   borderRadius: "50%",
                   height: "50px",
                   width: "50px",
-                  cursor: "pointer"
-                }}>
-                <FaArrowCircleUp
-                  color="black"
-                  fontSize={30}
-                />
+                  cursor: "pointer",
+                }}
+              >
+                <FaArrowCircleUp color="black" fontSize={30} />
               </Button>
             </Container>
           </Col>
@@ -140,6 +150,8 @@ const HeaderMenu = () => {
       <ModalQR
         showProp={showModalQr}
         repetedDishStateProp={objToDB}
+        handleShowModalCartProp={handleShowModalCart}
+        handleCloseModalQrProp={handleCloseModalQr}
       />
     </Container>
   );
