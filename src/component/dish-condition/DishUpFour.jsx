@@ -67,15 +67,15 @@ const DishUpFour = ({ dish }) => {
             {dish.name}
           </span>
           {dish.name.includes("pasta") ? (
-            <BsInfoCircle size={35} onClick={handleShow} />
+            <BsInfoCircle size={35} onClick={handleShowHella} />
           ) : dish.name.includes("gramigna") ? (
-            <BsInfoCircle size={35} onClick={handleShow} />
+            <BsInfoCircle size={35} onClick={handleShowWahida} />
           ) : dish.name.includes("tortelloni") ? (
-            <BsInfoCircle size={35} onClick={handleShow} />
+            <BsInfoCircle size={35} onClick={handleShowNaif} />
           ) : dish.name.includes("penne") ? (
-            <BsInfoCircle size={35} onClick={handleShow} />
+            <BsInfoCircle size={35} onClick={handleShowSpecial} />
           ) : dish.name.includes("farro") ? (
-            <BsInfoCircle size={35} onClick={handleShow} />
+            <BsInfoCircle size={35} onClick={handleShowAmber} />
           ) : null}
         </Col>
         <Col className="m-0 p-0 d-flex flex-grow-0" xs={2}>
