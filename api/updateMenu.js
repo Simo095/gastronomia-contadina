@@ -39,7 +39,6 @@ const parseCSV = async (csv) => {
         })
       )
       .on("data", (data) => {
-        console.log("data=>", data);
         if (
           data.id &&
           data.name &&
