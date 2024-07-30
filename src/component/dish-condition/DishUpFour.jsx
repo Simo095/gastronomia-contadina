@@ -30,7 +30,7 @@
 // export default DishUpFour;
 
 import React, { useState } from "react";
-import { Col, Container, Row, Button } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Numero from "../client-menu/Numero";
 import HellaHopModal from "../modals/HellaHopModal";
 import WahidaModal from "../modals/WahidaModal";
@@ -66,16 +66,16 @@ const DishUpFour = ({ dish }) => {
           <span className="fs-5 fw-bold flex-grow-1 m-0 p-0 ps-3">
             {dish.name}
           </span>
-          {dish.name.includes("pasta") ? (
-            <BsInfoCircle size={35} onClick={handleShowHella} />
-          ) : dish.name.includes("gramigna") ? (
-            <BsInfoCircle size={35} onClick={handleShowWahida} />
-          ) : dish.name.includes("tortelloni") ? (
-            <BsInfoCircle size={35} onClick={handleShowNaif} />
-          ) : dish.name.includes("penne") ? (
-            <BsInfoCircle size={35} onClick={handleShowSpecial} />
-          ) : dish.name.includes("farro") ? (
-            <BsInfoCircle size={35} onClick={handleShowAmber} />
+          {dish.name.includes("PASTA") ? (
+            <BsInfoCircle onClick={handleShowHella} />
+          ) : dish.name.includes("GRAMIGNA") ? (
+            <BsInfoCircle onClick={handleShowWahida} />
+          ) : dish.name.includes("TORTELLONI") ? (
+            <BsInfoCircle onClick={handleShowNaif} />
+          ) : dish.name.includes("PENNE") ? (
+            <BsInfoCircle onClick={handleShowSpecial} />
+          ) : dish.name.includes("FARRO") ? (
+            <BsInfoCircle onClick={handleShowAmber} />
           ) : null}
         </Col>
         <Col className="m-0 p-0 d-flex flex-grow-0" xs={2}>
