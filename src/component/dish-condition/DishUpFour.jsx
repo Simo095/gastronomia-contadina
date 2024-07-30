@@ -45,16 +45,16 @@ const DishUpFour = ({ dish }) => {
   const [showAmber, setShowAmber] = useState(false);
   const [showWahida, setShowWahida] = useState(false);
   const [showSpecial, setShowSpecial] = useState(false);
-  const handleShowHella = () => setShowModal(true);
-  const handleCloseHella = () => setShowModal(false);
-  const handleShowNaif = () => setShowModal(true);
-  const handleCloseNaif = () => setShowModal(false);
-  const handleShowAmber = () => setShowModal(true);
-  const handleCloseAmber = () => setShowModal(false);
-  const handleShowWahida = () => setShowModal(true);
-  const handleCloseWahida = () => setShowModal(false);
-  const handleShowSpecial = () => setShowModal(true);
-  const handleCloseSpecial = () => setShowModal(false);
+  const handleShowHella = () => setShowHella(true);
+  const handleCloseHella = () => setShowHella(false);
+  const handleShowNaif = () => setShowNaif(true);
+  const handleCloseNaif = () => setShowNaif(false);
+  const handleShowAmber = () => setShowAmber(true);
+  const handleCloseAmber = () => setShowAmber(false);
+  const handleShowWahida = () => setShowWahida(true);
+  const handleCloseWahida = () => setShowWahida(false);
+  const handleShowSpecial = () => setShowSpecial(true);
+  const handleCloseSpecial = () => setShowSpecial(false);
 
   return (
     <Container fluid className="m-0 p-0" key={dish.id}>
