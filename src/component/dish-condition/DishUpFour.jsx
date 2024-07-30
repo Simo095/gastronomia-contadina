@@ -3,13 +3,11 @@ import Numero from "../client-menu/Numero";
 
 const DishUpFour = ({ dish }) => {
   return (
-    <Container
-      fluid
-      className="m-0 p-0"
-      key={dish.id}
-      style={{ minHeight: "90px" }}
-    >
-      <Row className="row-cols-3 align-items-center d-flex w-100">
+    <Container fluid className="m-0 p-0" key={dish.id}>
+      <Row
+        className="row-cols-3 align-items-center d-flex w-100 "
+        style={{ minHeight: "90px" }}
+      >
         <Col className="m-0 p-0 d-flex flex-grow-1" xs={4}>
           <span className="fs-5 fw-bold flex-grow-1 m-0 p-0 ps-3">
             {dish.name}
