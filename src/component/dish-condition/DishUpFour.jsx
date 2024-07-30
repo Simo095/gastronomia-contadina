@@ -33,6 +33,10 @@ import React, { useState } from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import Numero from "../client-menu/Numero";
 import HellaHopModal from "../modals/HellaHopModal";
+import WahidaModal from "../modals/WahidaModal";
+import SpecialModal from "../modals/SpecialModal";
+import NaifModal from "../modals/NaifModal";
+import AmberAleModal from "../modals/AmberAleModal";
 
 const DishUpFour = ({ dish }) => {
   const [showModal, setShowModal] = useState(false); // Stato per gestire il modale
@@ -69,9 +73,17 @@ const DishUpFour = ({ dish }) => {
           ) : null}
         </Col>
       </Row>
-      {dish.name === "FARRO FANTASIA" && (
+      {dish.name.includes("pasta") ? (
         <HellaHopModal show={showModal} handleClose={handleClose} />
-      )}
+      ) : dish.name.includes("gramigna") ? (
+        <AmberAleModal show={showModal} handleClose={handleClose} />
+      ) : dish.name.includes("tortelloni") ? (
+        <SpecialModal show={showModal} handleClose={handleClose} />
+      ) : dish.name.includes("penne") ? (
+        <NaifModal show={showModal} handleClose={handleClose} />
+      ) : dish.name.includes("farro") ? (
+        <WahidaModal show={showModal} handleClose={handleClose} />
+      ) : null}
     </Container>
   );
 };
