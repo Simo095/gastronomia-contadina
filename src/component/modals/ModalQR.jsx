@@ -2,6 +2,7 @@ import { Container, Image, Modal } from "react-bootstrap";
 import QRCode from "react-qr-code";
 import scanqr from "../../asset/img/scanqr.png";
 import { useSelector } from "react-redux";
+import { IoChevronBackCircle } from "react-icons/io5";
 
 const ModalQR = ({
   showProp,
