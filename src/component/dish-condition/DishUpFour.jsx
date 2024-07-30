@@ -32,7 +32,7 @@
 import React, { useState } from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
 import Numero from "../client-menu/Numero";
-import HellaHopModal from "./HellaHopModal"; // Importa il componente del modale
+import HellaHopModal from "../modals/HellaHopModal";
 
 const DishUpFour = ({ dish }) => {
   const [showModal, setShowModal] = useState(false); // Stato per gestire il modale
