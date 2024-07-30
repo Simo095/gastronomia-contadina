@@ -62,9 +62,11 @@ const DishUpFour = ({ dish }) => {
           <Numero specificDish={dish} />
         </Col>
         <Col xs={1}>
-          <Button variant="info" onClick={handleShow}>
-            Info
-          </Button>
+          {dish.name === "FARRO FANTASIA" ? (
+            <Button variant="info" onClick={handleShow}>
+              Info
+            </Button>
+          ) : null}
         </Col>
       </Row>
       {dish.name === "FARRO FANTASIA" && (
