@@ -17,6 +17,7 @@ import gelato from "../../asset/img/gelato.png";
 import bar from "../../asset/img/bar.png";
 import sandwich from "../../asset/img/sandwich.png";
 import caffetteria from "../../asset/img/caffetteria.png";
+import aperitivo from "../../asset/img/aperitivo.png";
 const GroupButton = () => {
   const reparti = useSelector((state) => state.menu.ward);
 
@@ -86,6 +87,9 @@ const GroupButton = () => {
               ) : dish.ward.name.toLowerCase().includes("caffetteria") ||
                 dish.ward.name.toLowerCase().includes("caffetterie") ? (
                 <Image width={60} src={caffetteria} />
+              ) : dish.ward.name.toLowerCase().includes("aperitivo") ||
+                dish.ward.name.toLowerCase().includes("aperitivi") ? (
+                <Image width={60} src={sandwich} />
               ) : null}
               <span>{dish.ward.name}</span>
             </div>

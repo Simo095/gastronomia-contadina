@@ -7,10 +7,6 @@ import DishWornOut from "../dish-condition/DishWornOut";
 
 const Dishes = () => {
   const menu = useSelector((state) => state.menu.menu);
-  // const [showModal, setShowModal] = useState(false);
-
-  // const handleShow = () => setShowModal(true);
-  // const handleClose = () => setShowModal(false);
 
   useEffect(() => {}, [menu]);
   return (
@@ -26,7 +22,6 @@ const Dishes = () => {
       )}
       {menu.length > 0 &&
         menu.map((dish, i) => {
-          //const isHellaHop = dish.name === "Hella Hop";
           if (i + 1 < menu.length) {
             const nextDish = menu[i + 1];
             if (dish.ward.id === nextDish.ward.id) {
