@@ -17,27 +17,25 @@ const ModalCart = ({
   handleOrderProp,
   costoCopertiProp,
   notRightQuantityProp,
-  errorDishInStockProp,
+  errorDishInStockProp
 }) => {
   const dispatch = useDispatch();
-  const noteAppProp = useSelector((state) => state.cart.note);
-  const notRightQuantity = useSelector(
-    (state) => state.errorCart.listDishNotInStock
-  );
-  const menuProp = useSelector((state) => state.menu.menu);
-  const cartTotalProp = useSelector((state) => state.cart.total);
+  const noteAppProp = useSelector(state => state.cart.note);
+  const notRightQuantity = useSelector(state => state.errorCart.listDishNotInStock);
+  const menuProp = useSelector(state => state.menu.menu);
+  const cartTotalProp = useSelector(state => state.cart.total);
 
   const [showCancel, setShowCancel] = useState(false);
   const handleCloseCancel = () => setShowCancel(false);
   const handleShowCancel = () => setShowCancel(true);
 
   useEffect(() => {
-    dispatch(checkMenuBlob());
+    //dispatch(checkMenuBlob());
     console.log("loop");
     return () => {
       if (notRightQuantity.length > 0) {
-        notRightQuantity.map((id) =>
-          repetedDishStateProp.map((dish) =>
+        notRightQuantity.map(id =>
+          repetedDishStateProp.map(dish =>
             dish === "FS_QR"
               ? null
               : dish === "tavolo"
@@ -57,8 +55,13 @@ const ModalCart = ({
   }, []);
 
   return (
-    <Container fluid className="m-0 p-0">
-      <Modal show={showProp} centered onHide={handleCloseProp}>
+    <Container
+      fluid
+      className="m-0 p-0">
+      <Modal
+        show={showProp}
+        centered
+        onHide={handleCloseProp}>
         <Modal.Header>
           <div className="d-flex flex-column align-items-center justify-content-center ms-1 gap-1">
             <IoChevronBackCircle
@@ -93,29 +96,20 @@ const ModalCart = ({
 
             {repetedDishStateProp
               ? Object.keys(repetedDishStateProp).map((idDish, i) =>
-                  idDish === "FS_QR" ? null : idDish ===
-                    "tavolo" ? null : idDish ===
+                  idDish === "FS_QR" ? null : idDish === "tavolo" ? null : idDish ===
                     "richiestastock" ? null : idDish === "note" ? null : (
                     <Row
                       className="d-flex justify-content-between row-cols-2"
-                      key={i}
-                    >
+                      key={i}>
                       <Col xs={7}>
                         {/* Questa riga deve essere barrata per mostrare articoli non ordinabili piu perchè non in stock */}
                         {menuProp &&
-                          menuProp.map((dish) =>
+                          menuProp.map(dish =>
                             dish.id.toString() === idDish ? (
-                              notRightQuantityProp &&
-                              notRightQuantityProp.find(
-                                (id) => id.toString() === idDish
-                              ) ? (
+                              notRightQuantityProp && notRightQuantityProp.find(id => id.toString() === idDish) ? (
                                 <>
-                                  <p style={{ textDecoration: "line-through" }}>
-                                    {dish.name}
-                                  </p>
-                                  <p style={{ fontSize: "7px" }}>
-                                    ...altri hanno concluso prima
-                                  </p>
+                                  <p style={{ textDecoration: "line-through" }}>{dish.name}</p>
+                                  <p style={{ fontSize: "7px" }}>...altri hanno concluso prima</p>
                                 </>
                               ) : (
                                 <p>{dish.name}</p>
@@ -126,18 +120,16 @@ const ModalCart = ({
                       <Col xs={4}>
                         <p>
                           : {repetedDishStateProp[idDish]}x
-                          {menuProp &&
-                            menuProp.map((dish) =>
-                              dish.id.toString() === idDish ? dish.price : null
-                            )}
-                          €
+                          {menuProp && menuProp.map(dish => (dish.id.toString() === idDish ? dish.price : null))}€
                         </p>
                       </Col>
                     </Row>
                   )
                 )
               : null}
-            <Container fluid className="m-0 p-0 mt-3">
+            <Container
+              fluid
+              className="m-0 p-0 mt-3">
               <Row className="text-end">
                 <Col xs={12}>
                   <p className="fw-bold me-2">
@@ -173,35 +165,30 @@ const ModalCart = ({
 
             {repetedDishStateProp
               ? Object.keys(repetedDishStateProp).map((idDish, i) =>
-                  idDish === "FS_QR" ? null : idDish ===
-                    "tavolo" ? null : idDish ===
+                  idDish === "FS_QR" ? null : idDish === "tavolo" ? null : idDish ===
                     "richiestastock" ? null : idDish === "note" ? null : (
                     <Row
                       className="d-flex justify-content-between row-cols-2"
-                      key={i}
-                    >
+                      key={i}>
                       <Col xs={7}>
-                        <p>
-                          {menuProp &&
-                            menuProp.map((dish) =>
-                              dish.id.toString() === idDish ? dish.name : null
-                            )}
-                        </p>
+                        <p>{menuProp && menuProp.map(dish => (dish.id.toString() === idDish ? dish.name : null))}</p>
                       </Col>
                       <Col xs={4}>
                         <Row className="gap-4 ms-1">
-                          <Col className="ms-2" xs={3}>
+                          <Col
+                            className="ms-2"
+                            xs={3}>
                             {repetedDishStateProp[idDish]}
                           </Col>
 
-                          <Col className="text-end" xs={3}>
+                          <Col
+                            className="text-end"
+                            xs={3}>
                             {menuProp &&
-                              menuProp.map((dish) =>
+                              menuProp.map(dish =>
                                 dish.id.toString() === idDish
                                   ? dish.price % 1 !== 0
-                                    ? "€" +
-                                      dish.price.toString().replace(".", ",") +
-                                      "0"
+                                    ? "€" + dish.price.toString().replace(".", ",") + "0"
                                     : "€" + dish.price.toString() + ",00"
                                   : null
                               )}
@@ -212,7 +199,9 @@ const ModalCart = ({
                   )
                 )
               : null}
-            <Container fluid className="m-0 p-0 mt-3">
+            <Container
+              fluid
+              className="m-0 p-0 mt-3">
               <Row className="text-end">
                 <Col xs={12}>
                   <p className="fw-bold me-2 mt-2">
@@ -239,8 +228,7 @@ const ModalCart = ({
               }}
               cursor="pointer"
               color="#083759"
-              fontSize={60}
-            ></IoIosCloseCircle>
+              fontSize={60}></IoIosCloseCircle>
             <p className="m-0 p-0 fst-italic">Cancella</p>
           </div>
 
