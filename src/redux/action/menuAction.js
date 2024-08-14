@@ -38,7 +38,7 @@ export const fetchMenuActionBlob = () => {
           .filter(file => file.pathname.includes(`gc`))
           .reduce((latest, current) => {
             return new Date(current.uploadedAt) > new Date(latest.uploadedAt) ? current : latest;
-          }, menuJson[0]);
+          }, undefined);
         if (!menuFiltered) throw new Error("file non trovato!" + menuFiltered);
 
         // const lastMenuInsert = menuJson.reduce((latest, current) => {
