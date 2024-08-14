@@ -35,7 +35,7 @@ export const fetchMenuActionBlob = () => {
         dispatch(notFound(false));
         const menuJson = await ListBlobMenu.json();
         const menuFiltered = menuJson
-          .filter(file => file.pathname.startsWith(`gc`))
+          .filter(file => file.pathname.includes(`gc`))
           .reduce((latest, current) => {
             return new Date(current.uploadedAt) > new Date(latest.uploadedAt) ? current : latest;
           }, menuJson[0]);
