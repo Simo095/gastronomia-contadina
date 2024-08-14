@@ -36,12 +36,14 @@ export const fetchMenuActionBlob = () => {
         const menuJson = await ListBlobMenu.json();
         const menuFiltered2 = menuJson.filter(file => file.pathname.startsWith(`gc`));
         console.log(menuFiltered2);
-        console.log(menuJson);
+
         const menuFiltered = menuJson
           .filter(file => file.pathname.startsWith(`gc`))
           .reduce((latest, current) => {
+            console.log("latest ", latest);
+            console.log("current ", current);
             return new Date(current.uploadedAt) > new Date(latest.uploadedAt) ? current : latest;
-          }, menuJson[0]);
+          });
         if (!menuFiltered) throw new Error("file non trovato!" + menuFiltered);
 
         // const lastMenuInsert = menuJson.reduce((latest, current) => {
