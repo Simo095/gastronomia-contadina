@@ -1,4 +1,4 @@
-import { put } from "@vercel/blob";
+import { del, list, put } from "@vercel/blob";
 import csvParser from "csv-parser";
 import { Readable } from "stream";
 
@@ -8,13 +8,19 @@ export default async function updateMenuHandler(req, res) {
   }
 
   try {
+    const filename = "gc.json";
+    const { blobs } = await list();
+    const toDelete = blobs.find((el) => el.pathname === filename);
+
+    if (toDelete) {
+      await del(toDelete.url);
+    }
     const chunks = [];
     req.on("data", (chunk) => chunks.push(chunk));
     req.on("end", async () => {
       const buffer = Buffer.concat(chunks);
       const csvData = buffer.toString("utf-8");
       const parsedData = await parseCSV(csvData);
-      const filename = "gc.json";
       const blob = await put(filename, JSON.stringify(parsedData), {
         access: "public",
       });
